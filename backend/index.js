@@ -17,8 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
- origin: ["https://jobport-pv3q.onrender.com/"],
-    credentials:true
+ origin: ["*"],
 }
 
 app.use(cors(corsOptions));
