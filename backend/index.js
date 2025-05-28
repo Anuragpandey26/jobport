@@ -17,14 +17,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
- origin: ["http://localhost:5173"],
+ origin: ["https://jobport-pv3q.onrender.com/"],
     credentials:true
 }
 
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 3000;
-
+// Root route to confirm backend is running
+app.get("/", (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "Backend is running!"
+    });
+});
 
 // api's
 app.use("/api/v1/user", userRoute);
@@ -32,7 +37,7 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>{
     connectDB();
